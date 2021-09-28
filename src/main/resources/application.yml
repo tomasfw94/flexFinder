@@ -1,8 +1,8 @@
 spring:
- datasource:
-  url: jdbc:mysql://flexfinder.cg0nkwgqzydh.us-east-2.rds.amazonaws.com:3306/FlexFinderDB
-  username: admin 
-  password: 95123578
+# datasource:
+#  url: jdbc:mysql://172.30.42.140:3306/FlexFinderDB
+#  username: admin 
+#  password: 95123578
  jpa:
   hibernate.ddl-auto: update
   generate-ddl: true
