@@ -1,0 +1,97 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head> 
+    <title>Getting Started: Serving Web Content</title> 
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<!--     <link th:rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.css} "/> -->
+<!--     <link th:rel="stylesheet" th:href="@{/bootstrap/css/bootstrap-theme.css} "/> -->
+    
+    <link th:rel="stylesheet" th:href="@{/bootstrap/css/template-table.css} "/>
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+</head>
+<body>
+	<h1 style="
+	margin: 30px 0 30px 0;
+	font-size: 3em!important;
+    font-weight: 300!important;
+    line-height: 1em!important;
+    text-align: center!important;
+    color: #4DC3FA!important;">
+    	<span class="flex">Flex</span><span class="finder">Finder</span>
+    </h1>
+
+	<button type="button" style="margin-bottom: 20px;" class="btn btn-primary btn-custom" data-toggle="modal" data-target="#exampleModal">+ Crear búsqueda</button>
+
+	<table style="
+	text-align: left!important;
+    overflow: hidden!important;
+    width: 80%!important;
+    margin: 0 auto!important;
+    display: table!important;
+    padding: 0 0 8em 0!important;
+    border-collapse: separate!important;" class="container" contenteditable>
+		<thead>
+			<tr>
+				<th><h1>Rol</h1></th>
+				<th><h1>Team Leader</h1></th>
+				<th><h1>Rango Mínimo</h1></th>
+				<th><h1>Rango Máximo</h1></th>
+				<th><h1>Fecha</h1></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="ps : ${playerSearches}">
+				<td th:text="${ps.role}"></td>
+				<td th:text="${ps.author}"></td>
+				<td th:text="${ps.rankMin}"></td>
+				<td th:text="${ps.rankMax}"></td>
+				<td th:text="${#calendars.format(ps.createdDate,'dd/MM HH:MM')}"></td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel" style="color: black!important;">Nueva Búsqueda</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      	<form>
+		  <div class="form-group">
+		    <label for="nombreLol" style="color:black!important;">Tu nombre en LoL</label>
+		    <input type="text" class="form-control" id="nombreLol">
+		  </div>
+		  <div class="form-group">
+		    <label for="rolBuscado" style="color:black!important;">Rol buscado</label>
+		    <select class="form-control" id="rolBuscado">
+		    <option th:value="0"></option>
+		      <option 
+		      th:each="Role : ${rolesSelect}"
+              th:value="${Role}" 
+              th:text="${Role}"
+              />
+		    </select>
+		  </div>
+		</form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary btn-custom">Crear</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</html>
